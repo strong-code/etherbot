@@ -2,4 +2,4 @@
 git checkout master
 git pull
 skill etherbot
-screen -S etherbot -D ruby etherbot.rb
+screen -d -S etherbot ruby etherbot.rb

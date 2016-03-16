@@ -12,7 +12,7 @@ def get_price
   usd = BigDecimal(btc) * BigDecimal(btc_usd)
   balance = account['result'].slice(0,3)
   earnings = BigDecimal(usd) * BigDecimal(balance)
-  returns = (earnings.to_f / 1180.to_f) * 100
+  returns = (earnings.to_f / 1480.to_f) * 100
   volume = response['BTC_ETH']['baseVolume']
   return "[BTC] #{btc} | [USD] $#{usd.to_f.round(2)} | [Volume] #{volume.to_f.round(2)} |  BP's balance: #{balance} ETH - earnings: $#{earnings.to_i} - #{returns.round}% return"
 end
