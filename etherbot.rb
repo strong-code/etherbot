@@ -32,8 +32,6 @@ def run()
 
   socket.puts "JOIN #{chan}\n"
 
-  @count = 0
-
   until socket.eof? do
     msg = socket.gets
     puts msg
