@@ -7,7 +7,7 @@ require 'yaml'
 
 def get_user_info(nick)
   user = YAML.load_file('./address.yml')[nick]
-  return say("No address info for #{nick}")
+  return say("No address info for #{nick}") if !user
 
   address = user['addr']
   investment = user['investment']
