@@ -12,7 +12,13 @@ def get_user_info(nick)
   address = user['addr']
   investment = user['investment']
   url  = "http://api.etherscan.io/api?module=account&action=balance&address=#{address}&tag=latest"
-  json = JSON.parse(open(url).read)
+
+  begin  
+    json = JSON.parse(open(url).read)
+  rescue => e
+    return say("ERROR: #{3}")
+  end
+
   balance = json['result'].slice(0, 3)
 
   user_data = {
@@ -23,7 +29,12 @@ end
 
 def get_price_info
   url     = 'https://poloniex.com/public?command=returnTicker'
-  json    = JSON.parse(open(url).read)
+
+  begin
+    json    = JSON.parse(open(url).read)
+  rescue => e
+    return say("ERROR: #{e}")
+  end
 
   btc        = json['BTC_ETH']['last'].slice(0, 7)
   btc_usd    = json['USDT_BTC']['last'].slice(0, 7)
@@ -89,6 +100,4 @@ def run(verbose = false, test_mode = false)
 
 end
 
-verbose = ARGV[0] || false
-test_mode = ARGV[1] || false
-run(verbose, test_mode)
+run(ARGV[0], ARGV[1])
